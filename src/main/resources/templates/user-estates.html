@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
+<link rel="stylesheet" type="text/css" href="/style.css">
+
+<header>
+    <a href="/users">
+        <div class="header-item">Users</div>
+    </a>
+    <a href="/estates">
+        <div class="header-item">Estates</div>
+    </a>
+</header>
+
+<div class="main">
+    <div th:if="${(sellerEstates == null or sellerEstates.size() == 0) and (realtorEstates == null or realtorEstates.size() == 0)}">
+        <p>No estates found.</p>
+    </div>
+    <div th:if="${sellerEstates != null and sellerEstates.size() > 0}">
+        <h1>Estates Like Seller</h1>
+        <div class="container">
+            <table>
+                <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Title</th>
+                    <th>Seller ID</th>
+                    <th>Seller Name</th>
+                    <th>City</th>
+                    <th>Locality</th>
+                    <th>Type</th>
+                    <th>Cost</th>
+                    <th>Description</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr th:each="estate : ${sellerEstates}">
+                    <td th:text="${estate.id}"></td>
+                    <td th:text="${estate.title}"></td>
+                    <td th:text="${estate.seller.id}"></td>
+                    <td th:text="${estate.seller.name}"></td>
+                    <td th:text="${estate.city.name}"></td>
+                    <td th:text="${estate.locality.name}"></td>
+                    <td th:text="${estate.type.name}"></td>
+                    <td th:text="${estate.cost}"></td>
+                    <td th:text="${estate.description}" style="overflow: hidden; display: -webkit-box; -webkit-line-clamp: 3; -webkit-box-orient: vertical; text-overflow: ellipsis"></td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+    <div th:if="${realtorEstates != null and realtorEstates.size() > 0}">
+        <h1>Estates Like Realtor</h1>
+        <div class="container">
+            <table>
+                <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Title</th>
+                    <th>Realtor ID</th>
+                    <th>Realtor Name</th>
+                    <th>City</th>
+                    <th>Locality</th>
+                    <th>Type</th>
+                    <th>Cost</th>
+                    <th>Description</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr th:each="estate : ${realtorEstates}">
+                    <td th:text="${estate.id}"></td>
+                    <td th:text="${estate.title}"></td>
+                    <td th:text="${estate.realtor.id}"></td>
+                    <td th:text="${estate.realtor.user.name}"></td>
+                    <td th:text="${estate.city.name}"></td>
+                    <td th:text="${estate.locality.name}"></td>
+                    <td th:text="${estate.type.name}"></td>
+                    <td th:text="${estate.cost}"></td>
+                    <td th:text="${estate.description}" style="overflow: hidden; display: -webkit-box; -webkit-line-clamp: 3; -webkit-box-orient: vertical; text-overflow: ellipsis"></td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+</html>

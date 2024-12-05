@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="">
+<link rel="stylesheet" type="text/css" href="/style.css">
+<header>
+    <a href="/users">
+        <div class="header-item">Users</div>
+    </a>
+    <a href="/estates">
+        <div class="header-item">Estates</div>
+    </a>
+</header>
+
+<div class="main">
+    <h1>Users</h1>
+    <div class="container">
+    <table>
+        <thead>
+        <tr>
+            <th>ID</th>
+            <th>Name</th>
+            <th>Email</th>
+            <th>Password</th>
+            <th>Birthday</th>
+            <th>PID</th>
+            <th>Balance</th>
+            <th>Time</th>
+            <th>Action</th>
+            <th>Estates</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="user : ${users}">
+            <td th:text="${user.id}"></td>
+            <td th:text="${user.name}"></td>
+            <td th:text="${user.mail}"></td>
+            <td th:text="${user.password}"></td>
+            <td th:text="${user.birthday}"></td>
+            <td th:text="${user.pid}"></td>
+            <td th:text="${user.balance}"></td>
+            <td th:text="${user.time}"></td>
+            <td><a th:href="@{users/delete(id=${user.id})}">Delete</a>
+                <a th:href="@{/users/edit(id=${user.id})}">Edit</a>
+            </td>
+            <td><a th:href="@{estates/user-estates(id=${user.id})}">Estates</a>
+            </td>
+        </tr>
+        </tbody>
+    </table>
+</div>
+    <form action="users/add" method="post">
+        <label for="name">Name:</label>
+        <input id="name" type="text" name="name" required>
+        <label for="email">Email:</label>
+        <input id="email" type="email" name="email" required>
+        <label for="password">Password:</label>
+        <input id="password" type="password" name="password" required>
+        <label for="birthday">Birthday:</label>
+        <input id="birthday" type="date" name="birthday" required>
+        <label for="pid">PID:</label>
+        <input id="pid" type="text" name="pid">
+
+        <button type="submit">Add User</button>
+    </form>
+</div>
+</html>
+

@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="">
+    <link rel="stylesheet" type="text/css" href="/style.css">
+<header>
+    <a href="/users">
+        <div class="header-item">Users</div>
+    </a>
+    <a href="/estates">
+        <div class="header-item">Estates</div>
+    </a>
+</header>
+<div class="main">
+    <h1>Edit User</h1>
+    <form th:action="@{/users/edit}" method="post">
+        <input type="hidden" name="id" th:value="${user.id}">
+        <label for="name">Name:</label>
+        <input id="name" type="text" name="name" th:value="${user.name}" required>
+        <label for="email">Email:</label>
+        <input id="email" type="email" name="email" th:value="${user.mail}" required>
+        <label for="password">Password:</label>
+        <input id="password" type="password" name="password" th:value="${user.password}" required>
+        <label for="birthday">Birthday:</label>
+        <input id="birthday" type="date" name="birthday" th:value="${user.birthday}" required>
+        <label for="pid">PID:</label>
+        <input id="pid" type="text" name="pid" th:value="${user.pid}">
+        <label for="balance">Balance:</label>
+        <input id="balance" type="number" name="balance" step="0.01" th:value="${user.balance}">
+        <button type="submit">Update User</button>
+    </form>
+</div>
+</html>
